@@ -34,7 +34,11 @@ public class Stardelino extends Spaceship{
         return seats;
     };
 
-
+    @Override
+    public boolean check_seat_availabity(int number) {
+        if(number <= capacity) return true;
+        else return false;
+    }
     public void bookSeat(Martian martian) {
         MartianSeat seat = new MartianSeat(martian.getid(), martian.getName());
         if(seats.size() < capacity){

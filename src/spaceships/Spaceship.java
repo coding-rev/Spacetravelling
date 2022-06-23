@@ -18,7 +18,7 @@ public abstract class Spaceship {
 
     public abstract List<Seats> getSeats();
 
-
+    public abstract boolean check_seat_availabity(int number);
 
 
 }

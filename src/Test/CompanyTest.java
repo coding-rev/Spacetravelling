@@ -7,6 +7,7 @@ import Passengers.Martian;
 import Planets.Earth;
 import Planets.Mars;
 import companies.*;
+import org.junit.jupiter.api.Assertions;
 import spaceships.*;
 import java.util.List;
 import org.junit.Assert;
@@ -156,6 +157,7 @@ public class CompanyTest {
             Martian martian1     = new Martian(023232, "Martian One");
             Martian martian2     = new Martian(43579, "Martian Two");
             Assert.assertEquals(yes_response_to_date, martian1.canDate(martian2));
+            Assertions.assertEquals(yes_response_to_date, martian1.canDate(martian2));
         }
 
 
@@ -176,6 +178,32 @@ public class CompanyTest {
 
         }
 
+        // Seat Availability check
+        @Test
+        public void test_requested_number_exceeds_fleet_capacity(){
+            int extra_num           = 10;
+            Spacer spacer           = new Spacer();
+            int get_over_capacity   = spacer.getCapacity() + extra_num;
+            Assertions.assertEquals(false, spacer.check_seat_availabity(get_over_capacity));
+            Assertions.assertFalse(spacer.check_seat_availabity(get_over_capacity));
+        }
+
+        @Test
+        public void test_requested_number_is_below_fleet_capacity(){
+            int sub_num             = 10;
+            Bulletship bulletship   = new Bulletship();
+            int get_below_capacity   = bulletship.getCapacity() - sub_num;
+            Assertions.assertEquals(true, bulletship.check_seat_availabity(get_below_capacity));
+            Assertions.assertTrue(bulletship.check_seat_availabity(get_below_capacity));
+        }
+
+        @Test
+        public void test_requested_number_equal_fleet_capacity(){
+            Stardelino stardelino    = new Stardelino();
+            int get_equal_capacity   = stardelino.getCapacity();
+            Assertions.assertEquals(true, stardelino.check_seat_availabity(get_equal_capacity));
+
+        }
 
     }
 
