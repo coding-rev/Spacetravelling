@@ -167,6 +167,7 @@ public class CompanyTest {
 
         }
 
+
         @Test
         public void test_martian_cant_date_human(){
             Human human     = new Human(1212, "Seth");
